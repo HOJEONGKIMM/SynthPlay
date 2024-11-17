@@ -1,0 +1,172 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E1E1E"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 상단 드롭다운 스피커 선택 -->
+        <Spinner
+            android:id="@+id/device_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_spinner_background"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 프리셋 선택 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/preset_custom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/preset_button"
+                android:text="Custom"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/preset_pop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/preset_button_selected"
+                android:text="Pop"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/preset_classic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/preset_button"
+                android:text="Classic"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- 슬라이더 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <!-- 슬라이더 1 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <SeekBar
+                    android:id="@+id/slider_bass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:rotation="270"
+                    android:progress="50"
+                    android:thumbTint="#FFFFFF"
+                    android:progressTint="#00FFFF"
+                    android:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bass"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 슬라이더 2 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <SeekBar
+                    android:id="@+id/slider_treble"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:rotation="270"
+                    android:progress="70"
+                    android:thumbTint="#FFFFFF"
+                    android:progressTint="#00FFFF"
+                    android:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Treble"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Bass Boost 및 3D 효과 Knob -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Bass Boost -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bass Boost"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/knob_bass"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:progress="20"
+                    android:layout_margin="8dp" />
+            </LinearLayout>
+
+            <!-- 3D 효과 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3D Effect"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <SeekBar
+                    android:id="@+id/knob_3d"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:progress="50"
+                    android:layout_margin="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
