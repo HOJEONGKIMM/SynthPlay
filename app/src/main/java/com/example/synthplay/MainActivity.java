@@ -10,15 +10,12 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool;
     private int soundC, soundCSharp, soundD, soundDSharp, soundE, soundF, soundFSharp, soundG, soundGSharp, soundA, soundASharp, soundB, soundCHigh;
 
-    private StaffCanvas staffCanvas1;
-    private StaffCanvas staffCanvas2;
-    private StaffCanvas staffCanvas3;
+    private StaffCanvas staffCanvas1, staffCanvas2, staffCanvas3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         // SoundPool 초기화
         soundPool = new SoundPool.Builder().setMaxStreams(10).build();
@@ -58,20 +55,13 @@ public class MainActivity extends AppCompatActivity {
         staffCanvas2 = findViewById(R.id.drawing_canvas2);
         staffCanvas3 = findViewById(R.id.drawing_canvas3);
 
-        // 이퀄라이저 설정 버튼 동작
-        Button equalizerButton = findViewById(R.id.equalizer_button);
-        equalizerButton.setOnClickListener(v -> {
-            // TODO: 이퀄라이저 화면 이동 구현 예정
-        });
-
-        // 녹음 화면 버튼을 지우기 버튼으로 사용
+        // 지우기 버튼 설정
         Button recorderButton = findViewById(R.id.recorder_button);
         recorderButton.setText("지우기");
         recorderButton.setOnClickListener(v -> {
-            // 모든 캔버스를 초기화
-            if (staffCanvas1 != null) staffCanvas1.clearCanvas();
-            if (staffCanvas2 != null) staffCanvas2.clearCanvas();
-            if (staffCanvas3 != null) staffCanvas3.clearCanvas();
+            staffCanvas1.clearCanvas();
+            staffCanvas2.clearCanvas();
+            staffCanvas3.clearCanvas();
         });
     }
 
