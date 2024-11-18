@@ -20,6 +20,16 @@
             android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp" />
 
+        <Button
+            android:id="@+id/select_song_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="노래 선택"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp" />
+
         <!-- 프리셋 선택 -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,7 +74,7 @@
             android:gravity="center"
             android:layout_marginBottom="24dp">
 
-            <!-- 슬라이더 1 -->
+            <!-- Bass 슬라이더 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,7 +99,7 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- 슬라이더 2 -->
+            <!-- Treble 슬라이더 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,6 +120,56 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Treble"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Mid 슬라이더 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <SeekBar
+                    android:id="@+id/slider_mid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:rotation="270"
+                    android:progress="60"
+                    android:thumbTint="#FFFFFF"
+                    android:progressTint="#FFD700"
+                    android:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mid"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- High 슬라이더 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <SeekBar
+                    android:id="@+id/slider_high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:rotation="270"
+                    android:progress="80"
+                    android:thumbTint="#FFFFFF"
+                    android:progressTint="#FF4500"
+                    android:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -141,8 +201,8 @@
                     android:id="@+id/knob_bass"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:progress="20"
-                    android:layout_margin="8dp" />
+                    android:layout_margin="8dp"
+                    android:progress="20" />
             </LinearLayout>
 
             <!-- 3D 효과 -->

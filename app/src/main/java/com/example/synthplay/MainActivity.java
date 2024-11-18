@@ -1,7 +1,9 @@
 package com.example.synthplay;
 
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool;
     private int soundC, soundCSharp, soundD, soundDSharp, soundE, soundF, soundFSharp, soundG, soundGSharp, soundA, soundASharp, soundB, soundCHigh;
+    private boolean soundsLoaded = false; // 사운드가 모두 로드되었는지 확인
 
     private StaffCanvas staffCanvas1, staffCanvas2, staffCanvas3;
 
@@ -17,8 +20,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 볼륨 확인 및 설정
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
         // SoundPool 초기화
         soundPool = new SoundPool.Builder().setMaxStreams(10).build();
+        soundPool.setOnLoadCompleteListener((soundPool, sampleId, status) -> {
+            if (status == 0) {
+                Log.d("SoundPool", "Sound loaded successfully: Sample ID = " + sampleId);
+                // 모든 사운드 로드 완료 후 플래그 설정
+                if (sampleId == soundCHigh) {
+                    soundsLoaded = true;
+                    Log.d("SoundPool", "All sounds loaded successfully");
+                }
+            } else {
+                Log.e("SoundPool", "Failed to load sound: Sample ID = " + sampleId);
+            }
+        });
 
         // 사운드 로드
         soundC = soundPool.load(this, R.raw.c, 1);
@@ -36,19 +54,19 @@ public class MainActivity extends AppCompatActivity {
         soundCHigh = soundPool.load(this, R.raw.c, 1);
 
         // 이벤트 연결
-        findViewById(R.id.note_c).setOnClickListener(v -> playSound(soundC));
-        findViewById(R.id.note_c_sharp).setOnClickListener(v -> playSound(soundCSharp));
-        findViewById(R.id.note_d).setOnClickListener(v -> playSound(soundD));
-        findViewById(R.id.note_d_sharp).setOnClickListener(v -> playSound(soundDSharp));
-        findViewById(R.id.note_e).setOnClickListener(v -> playSound(soundE));
-        findViewById(R.id.note_f).setOnClickListener(v -> playSound(soundF));
-        findViewById(R.id.note_f_sharp).setOnClickListener(v -> playSound(soundFSharp));
-        findViewById(R.id.note_g).setOnClickListener(v -> playSound(soundG));
-        findViewById(R.id.note_g_sharp).setOnClickListener(v -> playSound(soundGSharp));
-        findViewById(R.id.note_a).setOnClickListener(v -> playSound(soundA));
-        findViewById(R.id.note_a_sharp).setOnClickListener(v -> playSound(soundASharp));
-        findViewById(R.id.note_b).setOnClickListener(v -> playSound(soundB));
-        findViewById(R.id.note_c_high).setOnClickListener(v -> playSound(soundCHigh));
+        findViewById(R.id.note_c).setOnClickListener(v -> playSound(soundC, "C Key"));
+        findViewById(R.id.note_c_sharp).setOnClickListener(v -> playSound(soundCSharp, "C# Key"));
+        findViewById(R.id.note_d).setOnClickListener(v -> playSound(soundD, "D Key"));
+        findViewById(R.id.note_d_sharp).setOnClickListener(v -> playSound(soundDSharp, "D# Key"));
+        findViewById(R.id.note_e).setOnClickListener(v -> playSound(soundE, "E Key"));
+        findViewById(R.id.note_f).setOnClickListener(v -> playSound(soundF, "F Key"));
+        findViewById(R.id.note_f_sharp).setOnClickListener(v -> playSound(soundFSharp, "F# Key"));
+        findViewById(R.id.note_g).setOnClickListener(v -> playSound(soundG, "G Key"));
+        findViewById(R.id.note_g_sharp).setOnClickListener(v -> playSound(soundGSharp, "G# Key"));
+        findViewById(R.id.note_a).setOnClickListener(v -> playSound(soundA, "A Key"));
+        findViewById(R.id.note_a_sharp).setOnClickListener(v -> playSound(soundASharp, "A# Key"));
+        findViewById(R.id.note_b).setOnClickListener(v -> playSound(soundB, "B Key"));
+        findViewById(R.id.note_c_high).setOnClickListener(v -> playSound(soundCHigh, "High C Key"));
 
         // 오선지 그림판 초기화
         staffCanvas1 = findViewById(R.id.drawing_canvas1);
@@ -65,14 +83,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void playSound(int soundId) {
-        soundPool.play(soundId, 1, 1, 0, 0, 1);
+    private void playSound(int soundId, String keyName) {
+        if (soundPool != null && soundsLoaded) {
+            soundPool.play(soundId, 1, 1, 0, 0, 1);
+            Log.d("SoundPool", "Playing sound: " + keyName);
+        } else {
+            Log.e("SoundPool", "Sound not loaded or SoundPool not initialized");
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundPool.release();
-        soundPool = null;
+        if (soundPool != null) {
+            soundPool.release();
+            soundPool = null;
+        }
     }
 }
