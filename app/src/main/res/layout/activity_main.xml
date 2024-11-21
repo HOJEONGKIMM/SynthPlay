@@ -141,19 +141,19 @@
     <com.example.synthplay.StaffCanvas
         android:id="@+id/drawing_canvas1"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:background="#FFFFFF" />
 
     <com.example.synthplay.StaffCanvas
         android:id="@+id/drawing_canvas2"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:background="#FFFFFF" />
 
     <com.example.synthplay.StaffCanvas
         android:id="@+id/drawing_canvas3"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:background="#FFFFFF" />
 
     <!-- 화면 이동 버튼 -->
@@ -164,8 +164,17 @@
         android:text="이퀄라이저 설정" />
 
     <Button
+        android:id="@+id/erase_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="화면 지우기" />
+
+    <Button
         android:id="@+id/recorder_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="녹음 화면" />
+        android:text="녹음 시작" />
+
+
+
 </LinearLayout>
