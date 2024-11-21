@@ -1,5 +1,6 @@
 package com.example.synthplay;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -81,6 +82,13 @@ public class MainActivity extends AppCompatActivity {
             staffCanvas2.clearCanvas();
             staffCanvas3.clearCanvas();
         });
+
+        // 이퀄라이저 버튼 설정 (화면 전환)
+        Button equalizerButton = findViewById(R.id.equalizer_button);
+        equalizerButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EqualizerActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void playSound(int soundId, String keyName) {
@@ -100,4 +108,6 @@ public class MainActivity extends AppCompatActivity {
             soundPool = null;
         }
     }
+
+
 }
