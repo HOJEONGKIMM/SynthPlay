@@ -228,5 +228,25 @@
                     android:layout_margin="8dp" />
             </LinearLayout>
         </LinearLayout>
+        <!-- Play 버튼 -->
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_background"
+            android:textColor="#FFFFFF" />
+
+        <!-- 뒤로가기 버튼 -->
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="뒤로가기"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
+
 </ScrollView>
