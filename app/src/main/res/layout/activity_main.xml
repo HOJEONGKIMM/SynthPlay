@@ -175,6 +175,13 @@
         android:layout_height="wrap_content"
         android:text="녹음 시작" />
 
+    <Button
+        android:id="@+id/select_file_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="녹음된 파일 보기"
+        android:layout_marginTop="16dp" />
+
 
 
 </LinearLayout>
