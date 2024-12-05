@@ -6,14 +6,18 @@ import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
 import android.media.SoundPool;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     private StaffCanvas staffCanvas1, staffCanvas2, staffCanvas3;
     private MediaRecorder mediaRecorder;
+    private MediaPlayer mediaPlayer;
     private boolean permissionToRecordAccepted = false;
+
+    private String recordedFilePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, EqualizerActivity.class);
             startActivity(intent);
         });
+
+        // 녹음된 파일 선택 버튼
+        Button selectFileButton = findViewById(R.id.select_file_button);
+        selectFileButton.setOnClickListener(v -> showRecordedFilesDialog());
     }
 
     private void requestAudioPermission() {
@@ -150,22 +161,49 @@ public class MainActivity extends AppCompatActivity {
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
             mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-            mediaRecorder.setOutputFile(getFilesDir().getAbsolutePath() + "/recorded_audio.mp3");
+
+            // 내부 저장소에 파일 저장
+            recordedFilePath = getFilesDir().getAbsolutePath() + "/recorded_audio_" + System.currentTimeMillis() + ".mp3";
+            mediaRecorder.setOutputFile(recordedFilePath);
 
             try {
                 mediaRecorder.prepare();
                 mediaRecorder.start();
+                Toast.makeText(this, "녹음 시작", Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
-                Log.e("MediaRecorder", "Failed to start recording", e);
+                Log.e("MediaRecorder", "녹음 실패", e);
             }
         }
     }
+
+    private void showRecordedFilesDialog() {
+        File directory = getFilesDir();
+        File[] files = directory.listFiles((dir, name) -> name.endsWith(".mp3"));
+
+        if (files == null || files.length == 0) {
+            Toast.makeText(this, "녹음된 파일이 없습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String[] fileNames = new String[files.length];
+        for (int i = 0; i < files.length; i++) {
+            fileNames[i] = files[i].getName();
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("녹음된 파일 선택");
+        builder.setItems(fileNames, (dialog, which) -> playSelectedFile(files[which]));
+        builder.setNegativeButton("취소", null);
+        builder.create().show();
+    }
+
 
     private void stopRecording() {
         if (mediaRecorder != null) {
             mediaRecorder.stop();
             mediaRecorder.release();
             mediaRecorder = null;
+            Toast.makeText(this, "녹음 완료: " + recordedFilePath, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -178,12 +216,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void playSelectedFile(File file) {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(file.getAbsolutePath());
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+            Toast.makeText(this, "재생 중: " + file.getName(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Log.e("MediaPlayer", "재생 실패", e);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (soundPool != null) {
-            soundPool.release();
-            soundPool = null;
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+        if (mediaRecorder != null) {
+            mediaRecorder.release();
         }
     }
 }
