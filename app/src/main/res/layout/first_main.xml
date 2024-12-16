@@ -50,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/center_text" />
 
+
     <!-- 시작하기 버튼 -->
 
     <TextView
@@ -57,9 +58,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="772dp"
+        android:layout_marginTop="476dp"
         android:layout_marginEnd="16dp"
-        android:text="내가 원하는\n나만의 음악을!\n기초 작곡 툴과 신디사이저를\n경험해보세요"
+        android:text="내가 원하는\n나만의 음악을!\n기초 작곡 툴과 이퀄라이저를\n경험해보세요"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
