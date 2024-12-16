@@ -1,0 +1,187 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/TextText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:gravity="center"
+        android:text="나만의 작곡 프로그램" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <!-- 흰 키 C -->
+        <ImageButton
+            android:id="@+id/note_c"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="C Key" />
+
+        <!-- 검은 키 C# -->
+        <ImageButton
+            android:id="@+id/note_c_sharp"
+            android:layout_width="35dp"
+            android:layout_height="100dp"
+            android:background="@drawable/black_key"
+            android:layout_marginStart="-20dp"
+            android:layout_marginEnd="-20dp"
+            android:contentDescription="C# Key" />
+
+        <!-- 흰 키 D -->
+        <ImageButton
+            android:id="@+id/note_d"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="D Key" />
+
+        <!-- 검은 키 D# -->
+        <ImageButton
+            android:id="@+id/note_d_sharp"
+            android:layout_width="35dp"
+            android:layout_height="100dp"
+            android:background="@drawable/black_key"
+            android:layout_marginStart="-20dp"
+            android:layout_marginEnd="-20dp"
+            android:contentDescription="D# Key" />
+
+        <!-- 흰 키 E -->
+        <ImageButton
+            android:id="@+id/note_e"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="E Key" />
+
+        <!-- 흰 키 F -->
+        <ImageButton
+            android:id="@+id/note_f"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="F Key" />
+
+        <!-- 검은 키 F# -->
+        <ImageButton
+            android:id="@+id/note_f_sharp"
+            android:layout_width="35dp"
+            android:layout_height="100dp"
+            android:background="@drawable/black_key"
+            android:layout_marginStart="-20dp"
+            android:layout_marginEnd="-20dp"
+            android:contentDescription="F# Key" />
+
+        <!-- 흰 키 G -->
+        <ImageButton
+            android:id="@+id/note_g"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="G Key" />
+
+        <!-- 검은 키 G# -->
+        <ImageButton
+            android:id="@+id/note_g_sharp"
+            android:layout_width="35dp"
+            android:layout_height="100dp"
+            android:background="@drawable/black_key"
+            android:layout_marginStart="-20dp"
+            android:layout_marginEnd="-20dp"
+            android:contentDescription="G# Key" />
+
+        <!-- 흰 키 A -->
+        <ImageButton
+            android:id="@+id/note_a"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="A Key" />
+
+        <!-- 검은 키 A# -->
+        <ImageButton
+            android:id="@+id/note_a_sharp"
+            android:layout_width="35dp"
+            android:layout_height="100dp"
+            android:background="@drawable/black_key"
+            android:layout_marginStart="-20dp"
+            android:layout_marginEnd="-20dp"
+            android:contentDescription="A# Key" />
+
+        <!-- 흰 키 B -->
+        <ImageButton
+            android:id="@+id/note_b"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="B Key" />
+
+        <!-- 흰 키 C (옥타브) -->
+        <ImageButton
+            android:id="@+id/note_c_high"
+            android:layout_width="50dp"
+            android:layout_height="150dp"
+            android:background="@drawable/white_key"
+            android:contentDescription="High C Key" />
+    </LinearLayout>
+
+    <!-- 오선지 그림판 -->
+
+    <com.example.synthplay.StaffCanvas
+        android:id="@+id/drawing_canvas1"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="#FFFFFF" />
+
+    <com.example.synthplay.StaffCanvas
+        android:id="@+id/drawing_canvas2"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="#FFFFFF" />
+
+    <com.example.synthplay.StaffCanvas
+        android:id="@+id/drawing_canvas3"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="#FFFFFF" />
+
+    <!-- 화면 이동 버튼 -->
+    <Button
+        android:id="@+id/equalizer_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이퀄라이저 설정" />
+
+    <Button
+        android:id="@+id/erase_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="화면 지우기" />
+
+    <Button
+        android:id="@+id/recorder_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="녹음 시작" />
+
+    <Button
+        android:id="@+id/select_file_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="녹음된 파일 보기"
+        android:layout_marginTop="16dp" />
+
+
+
+</LinearLayout>
